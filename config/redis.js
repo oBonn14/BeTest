@@ -9,4 +9,4 @@ const redisClient = ioredis.createClient({
     console.error('error cok')
 })
 
-module.exports = redis
+module.exports = redisClient

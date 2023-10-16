@@ -6,12 +6,7 @@ const userModel = require('../model/user.js')
 const adminModel = require('../model/admin.js')
 const auth = require('../config/auth.js')
 const tokenExpiry = '1h';
-const ioredis = require('ioredis')
-
-const redisClient = ioredis.createClient({
-    host: '127.0.0.1',
-    port: 6379,
-  })
+const redisClient = require('../config/redis.js')
 
 //register user
 router.post('/register', async (req, res) => {
@@ -99,7 +94,7 @@ router.post('/user', auth, async (req, res) => {
   })
 
 //update  user
-router.put('/user/:id', auth, async (req, res) => { // Perhatikan urutan `req` dan `res`
+router.put('/user/:id', auth, async (req, res) => {
     try {
         const updt = await userModel.findByIdAndUpdate(req.params.id, req.body, { new: true })
         if (!updt) {
