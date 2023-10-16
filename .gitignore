@@ -1,0 +1,10 @@
+# Ignored files
+node_modules/
+.env
+.env.development
+.env.production
+.env.test
+coverage/
+logs/
+npm-debug.log
+package-lock.json
