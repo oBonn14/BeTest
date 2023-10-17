@@ -1,14 +1,17 @@
 const express = require('express');
 const router = require('./route/route');
-const db = require('./config/server.js')
+const db = require('./config/server.js');
+const http = require('http'); // Import the http module
+
 const app = express();
-const port = 3000
+const port = 3000;
 
-app.use(express.json())
-
+app.use(express.json());
 app.use('/api', router);
 
-app.listen(port, (err) => {
+const server = http.createServer(app); // Create an http.Server instance
+
+server.listen(port, (err) => {
   if (!err) {
     console.log('Server running on port ' + port);
   } else {
@@ -16,3 +19,4 @@ app.listen(port, (err) => {
   }
 });
 
+module.exports = server; // Export the http.Server instance

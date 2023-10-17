@@ -68,7 +68,7 @@ const checkRedis = async (req, res, next) => {
   res.status(200).json(users)
 }
 
-router.get('/user', auth, checkRedis, async (req, res) => {
+router.get('/user', checkRedis, async (req, res) => {
   let users;
   users = await redisClient.get(redisKey)
 
