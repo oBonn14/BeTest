@@ -23,6 +23,7 @@
     "mongoose": "^7.6.1",
     "redis": "^4.6.10",
     "session-store": "^0.0.6",
+    "sinon": "^16.1.0",
     "supertest": "^6.3.3"
   },
   "devDependencies": {

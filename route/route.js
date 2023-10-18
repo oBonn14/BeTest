@@ -68,8 +68,8 @@ const checkRedis = async (req, res, next) => {
   res.status(200).json(users)
 }
 
-router.get('/user', checkRedis, async (req, res) => {
-  let users;
+router.get('/user', auth, checkRedis, async (req, res) => {
+  let users
   users = await redisClient.get(redisKey)
 
   if (!users) {
@@ -77,7 +77,7 @@ router.get('/user', checkRedis, async (req, res) => {
     redisClient.set(redisKey, JSON.stringify(users), 'EX', 3600)
   }
   res.status(200).json(users)
-});
+})
 
 //add user
 router.post('/user', auth, async (req, res) => {
@@ -87,7 +87,7 @@ router.post('/user', auth, async (req, res) => {
       if (!post) {
         throw new Error('Something went wrong with the post')
       }
-      res.status(201).json(post)
+      res.status(201).json({ msg: 'User add success' })
     } catch (error) {
       res.status(400).json({ msg: error.message })
     }
@@ -100,11 +100,11 @@ router.put('/user/:id', auth, async (req, res) => {
         if (!updt) {
             return res.status(404).json({ success: false, msg: 'User ID not found' })
         }
-        res.status(200).json({ success: true, data: updt })
+        res.status(200).json({ msg: 'User Update success' })
     } catch (error) {
         res.status(400).json({ success: false, msg: error.message })
     }
-});
+})
 
 
 
@@ -115,7 +115,7 @@ router.delete('/user/:id', auth, async (req,res) => {
         if(!del){
             return res.status(404).json({msg: 'User ID not found' })
     }
-    res.status(200).json({success: true})
+    res.status(200).json({msg: 'Delete Data Success'})
     } catch (error){
         res.status(400).json({msg: error.message})
     }
