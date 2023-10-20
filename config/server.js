@@ -1,5 +1,9 @@
 const mongoose = require('mongoose')
-// connect db
+
+// connect build docker
+// const dbURL = 'mongodb://mongodb_container:27017/db_MExsan_betest'
+
+// connect local 
 const dbURL = 'mongodb://127.0.0.1:27017/db_MExsan_betest'
 
 mongoose.connect(dbURL, {

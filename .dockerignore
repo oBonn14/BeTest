@@ -1,0 +1,12 @@
+# compiled output
+.vscode
+/node_modules
+
+.prettierrc
+
+# test
+jest.config.js
+
+# docker
+Dockerfile
+docker-compose.yml
